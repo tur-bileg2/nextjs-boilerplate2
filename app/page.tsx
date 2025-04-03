@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { GoogleSignInButton } from "@/components/google-sign-in-button";
 
 export default function Home() {
   return (
@@ -12,6 +13,8 @@ export default function Home() {
           height={38}
           priority
         />
+        <h1 className="mb-6 text-2xl font-bold">Welcome to My App</h1>
+        <GoogleSignInButton />
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{" "}
