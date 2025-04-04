@@ -16,6 +16,7 @@
     "lucide-react": "^0.487.0",
     "next": "15.2.3",
     "next-auth": "^4.24.11",
+    "node-mailjet": "^6.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",

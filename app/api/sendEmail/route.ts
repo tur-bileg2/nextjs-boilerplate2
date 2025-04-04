@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import Mailjet from 'node-mailjet';
 
 export async function POST(request: Request) {
   try {
@@ -12,29 +13,56 @@ export async function POST(request: Request) {
       }, { status: 400 });
     }
     
-    // Create email content
-    const emailContent = {
-      to: 'tubulol12345@gmail.com', // Replace with the actual recipient email
-      from: email,
-      subject: `Contact Form: ${subject}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Subject: ${subject}
-        
-        Message:
-        ${message}
-      `
-    };
+    // Initialize Mailjet with API keys from environment variables
+    const mailjet = Mailjet.apiConnect(
+      process.env.MAILJET_API_KEY || '',
+      process.env.MAILJET_SECRET_KEY || ''
+    );
     
-    // In a real application, you would use a service like SendGrid, AWS SES, or Nodemailer
-    // For demonstration, we'll simulate a successful email send
-    console.log('Email would be sent with the following content:', emailContent);
+    // Get recipient email from environment variable or use default
+    const recipientEmail = process.env.RECIPIENT_EMAIL || 'tubulol12345@gmail.com';
     
-    // Simulate processing time
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Send email using Mailjet
+    await mailjet
+      .post('send', { version: 'v3.1' })
+      .request({
+        Messages: [
+          {
+            From: {
+              Email: recipientEmail,
+              Name: "Contact Form",
+            },
+            To: [
+              {
+                Email: recipientEmail,
+                Name: "Recipient",
+              },
+            ],
+            Subject: `Contact Form: ${subject}`,
+            TextPart: `
+              Name: ${name}
+              Email: ${email}
+              Subject: ${subject}
+              
+              Message:
+              ${message}
+            `,
+            HTMLPart: `
+              <h3>New Contact Form Submission</h3>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Subject:</strong> ${subject}</p>
+              <p><strong>Message:</strong></p>
+              <p>${message.replace(/\n/g, '<br>')}</p>
+            `,
+            ReplyTo: {
+              Email: email,
+              Name: name
+            }
+          },
+        ],
+      });
     
-    // Return a successful response
     return NextResponse.json({ 
       success: true, 
       message: 'Email sent successfully' 
