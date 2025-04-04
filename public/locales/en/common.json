@@ -1,0 +1,28 @@
+
+{
+  "experience": {
+    "subtitle": "My diverse career journey across talent development, marketing, and customer service, showcasing adaptability and cross-disciplinary skills.",
+    "workHistory": "Work History",
+    "keyProjects": "Key Projects",
+    "skillsEndorsements": "Skills & Endorsements",
+    "jobs": [
+      {
+        "role": "Career Consultant",
+        "company": "ICC Consultants Inc.",
+        "description": "Connecting international talent with Japan's job market while providing comprehensive career counseling for students and professionals.",
+        "responsibilities": [
+          "Provide career counseling and guidance for international students seeking employment in Japan",
+          "Develop relationships with companies looking to hire international talent",
+          "Organize career development workshops and networking events",
+          "Offer cultural integration training for both employers and job seekers"
+        ]
+      }
+    ],
+    "skills": {
+      "professional": "Professional Skills",
+      "language": "Language & Communication",
+      "yoga": "Yoga & Wellness"
+    }
+
+  }
+}

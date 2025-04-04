@@ -1,106 +1,195 @@
-import Image from "next/image";
-import { GoogleSignInButton } from "@/components/google-sign-in-button";
+'use client';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <h1 className="mb-6 text-2xl font-bold">Welcome to My App</h1>
-        <GoogleSignInButton />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { t } = useLanguage();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+  return (
+    <>
+      <Header />
+      
+      <main>
+        {/* Hero section */}
+        <section className="bg-gradient-to-r from-slate-50 to-indigo-50 py-24">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+              <motion.div 
+                className="lg:w-1/2 space-y-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="space-y-3">
+                  <h2 className="text-2xl text-indigo-700 font-semibold">{t('home.hero.greeting')}</h2>
+                  <h1 className="text-5xl lg:text-6xl font-bold text-slate-900">{t('home.hero.name')}</h1>
+                  <p className="text-3xl text-slate-700">{t('home.hero.title')}</p>
+                </div>
+                
+                <p className="text-xl text-slate-600 leading-relaxed max-w-xl">
+                  {t('home.hero.description')}
+                </p>
+                
+                <div>
+                  <Link 
+                    href="/contact" 
+                    className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    {t('home.hero.cta')}
+                  </Link>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                className="lg:w-1/2 flex justify-center lg:justify-end"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-8 border-white shadow-xl">
+                  <Image 
+                    src="/images/Bilguunnaran_headshot.jpeg" 
+                    alt="Bilguun Naran"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* About section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              className="max-w-4xl mx-auto text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold text-slate-900 mb-6">{t('home.about.title')}</h2>
+              <p className="text-xl text-slate-600 leading-relaxed mb-8">
+                {t('home.about.description')}
+              </p>
+              <Link 
+                href="/about" 
+                className="inline-block bg-slate-100 hover:bg-slate-200 text-indigo-700 font-medium py-3 px-8 rounded-lg transition-all duration-300"
+              >
+                {t('home.about.button')}
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Experience section */}
+        <section className="py-20 bg-slate-50">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              className="max-w-4xl mx-auto text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold text-slate-900 mb-6">{t('home.experience.title')}</h2>
+              <p className="text-xl text-slate-600 leading-relaxed mb-8">
+                {t('home.experience.description')}
+              </p>
+              <Link 
+                href="/experience" 
+                className="inline-block bg-slate-100 hover:bg-slate-200 text-indigo-700 font-medium py-3 px-8 rounded-lg transition-all duration-300"
+              >
+                {t('home.experience.button')}
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Services section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold text-slate-900">{t('home.services.title')}</h2>
+            </motion.div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[
+                {
+                  title: t('home.services.forJobSeekers'),
+                  description: t('home.services.jobSeekersDescription'),
+                  icon: '👤',
+                  delay: 0
+                },
+                {
+                  title: t('home.services.forCompanies'),
+                  description: t('home.services.companiesDescription'),
+                  icon: '🏢',
+                  delay: 0.2
+                },
+                {
+                  title: t('home.services.workshops'),
+                  description: t('home.services.workshopsDescription'),
+                  icon: '🔄',
+                  delay: 0.4
+                }
+              ].map((service, index) => (
+                <motion.div 
+                  key={index}
+                  className="bg-slate-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: service.delay }}
+                  viewport={{ once: true }}
+                >
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">{service.title}</h3>
+                  <p className="text-slate-600">{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact CTA section */}
+        <section className="py-20 bg-indigo-600 text-white">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              className="max-w-4xl mx-auto text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold mb-6">{t('home.contact.title')}</h2>
+              <p className="text-xl text-indigo-100 leading-relaxed mb-8">
+                {t('home.contact.description')}
+              </p>
+              <Link 
+                href="/contact" 
+                className="inline-block bg-white hover:bg-indigo-50 text-indigo-700 font-medium py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                {t('home.contact.button')}
+              </Link>
+            </motion.div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      
+      <Footer />
+    </>
   );
 }
