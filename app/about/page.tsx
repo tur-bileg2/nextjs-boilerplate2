@@ -103,6 +103,40 @@ export default function About() {
               </div>
             </motion.div>
           </section>
+
+          {/* Yoga & Wellness Section */}
+          <section className="relative rounded-xl overflow-hidden">
+            <motion.div
+              className="bg-gradient-to-r from-indigo-900/90 to-indigo-800/90 p-8 md:p-12 relative z-10"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
+                <div className="space-y-6 text-white">
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    {t('about.interests.title')}
+                  </h2>
+                  <p className="text-indigo-100 leading-relaxed">
+                    {t('about.interests.content1')}
+                  </p>
+                </div>
+                <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-xl">
+                  <Image
+                    src="/images/yoga.jpg"
+                    alt="Yoga Practice"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                </div>
+              </div>
+            </motion.div>
+            {/* Background gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-indigo-50 -z-10" />
+          </section>
           
           {/* Services Sections */}
           <section className="space-y-12">
