@@ -47,7 +47,7 @@ export default function About() {
               <div className="relative w-full h-[500px] rounded-xl overflow-hidden shadow-xl">
                 <Image 
                   src="/images/Bilguunnaran_headshot.jpeg"
-                  alt="Bilguun Naran"
+                  alt="Bilguunnaran Uurtsaikh"
                   fill
                   style={{ objectFit: 'cover' }}
                 />

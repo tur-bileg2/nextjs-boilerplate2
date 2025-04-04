@@ -30,12 +30,12 @@ export async function POST(request: Request) {
           {
             From: {
               Email: recipientEmail,
-              Name: "Contact Form",
+              Name: "Bilguunnaran Uurtsaikh Contact Form",
             },
             To: [
               {
                 Email: recipientEmail,
-                Name: "Recipient",
+                Name: "Bilguunnaran Uurtsaikh",
               },
             ],
             Subject: `Contact Form: ${subject}`,

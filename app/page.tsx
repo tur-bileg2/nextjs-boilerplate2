@@ -54,7 +54,7 @@ export default function Home() {
                 <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-8 border-white shadow-xl">
                   <Image 
                     src="/images/Bilguunnaran_headshot.jpeg" 
-                    alt="Bilguun Naran"
+                    alt="Bilguunnaran"
                     fill
                     style={{ objectFit: 'cover' }}
                     priority

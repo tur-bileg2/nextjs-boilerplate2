@@ -223,7 +223,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Home page
     'home.hero.greeting': 'Hello, I am',
-    'home.hero.name': 'Bilguun Naran',
+    'home.hero.name': 'Bilguunnaran Uurtsaikh',
     'home.hero.title': 'Cross-Cultural Career Consultant',
     'home.hero.description': 'Connecting international talent with Japanese opportunities through trilingual expertise in English, Japanese, and Mongolian.',
     'home.hero.cta': 'Get In Touch',
@@ -490,7 +490,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Home page
     'home.hero.greeting': 'こんにちは、私は',
-    'home.hero.name': 'ビルグーン・ナラン',
+    'home.hero.name': 'Bilguunnaran Uurtsaikh',
     'home.hero.title': '異文化キャリアコンサルタント',
     'home.hero.description': '英語、日本語、モンゴル語の3カ国語で、国際人材と日本の機会をつなぎます。',
     'home.hero.cta': 'お問い合わせ',

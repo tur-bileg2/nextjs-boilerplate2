@@ -172,7 +172,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-800">{t('contact.email')}</h3>
-                    <p className="text-indigo-600">bilguunnaran@example.com</p>
+                    <p className="text-indigo-600">bilguunnaranuurtsaikh@example.com</p>
                   </div>
                 </div>
                 
