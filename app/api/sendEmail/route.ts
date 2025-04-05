@@ -7,23 +7,30 @@ export async function POST(request: Request) {
     
     // Validate the form data
     if (!name || !email || !subject || !message) {
-      return NextResponse.json({ 
-        success: false, 
-        message: 'Missing required fields' 
-      }, { status: 400 });
+      return NextResponse.json(
+        { success: false, message: 'Missing required fields' },
+        { status: 400 }
+      );
     }
     
-    // Initialize Mailjet with API keys from environment variables
+    // Ensure Mailjet credentials are set
+    if (!process.env.MAILJET_API_KEY || !process.env.MAILJET_SECRET_KEY) {
+      return NextResponse.json(
+        { success: false, message: 'Mailjet credentials not configured' },
+        { status: 500 }
+      );
+    }
+    
+    // Initialize Mailjet
     const mailjet = Mailjet.apiConnect(
-      process.env.MAILJET_API_KEY || '',
-      process.env.MAILJET_SECRET_KEY || ''
+      process.env.MAILJET_API_KEY,
+      process.env.MAILJET_SECRET_KEY
     );
     
-    // Get recipient email from environment variable or use default
+    // Use recipient email from env
     const recipientEmail = process.env.RECIPIENT_EMAIL || 'tubulol12345@gmail.com';
     
-    // Send email using Mailjet
-    await mailjet
+    const result = await mailjet
       .post('send', { version: 'v3.1' })
       .request({
         Messages: [
@@ -62,17 +69,15 @@ export async function POST(request: Request) {
           },
         ],
       });
-    
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Email sent successfully' 
-    });
+      
+    console.log('Email sent successfully:', result.body);
+    return NextResponse.json({ success: true, message: 'Email sent successfully' });
     
   } catch (error) {
     console.error('Error sending email:', error);
-    return NextResponse.json({ 
-      success: false, 
-      message: 'Failed to send email' 
-    }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: 'Failed to send email' },
+      { status: 500 }
+    );
   }
 }

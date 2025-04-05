@@ -327,7 +327,7 @@ export default function Contact() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">{t('contact.socialMedia')}</h3>
                 <div className="flex gap-4">
                   <a 
-                    href="https://linkedin.com" 
+                    href="https://www.linkedin.com/in/bilguunnaran-uurtsaikh-84150725b/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="group bg-white p-4 rounded-lg text-indigo-600 shadow-sm hover:shadow-md hover:bg-indigo-600 hover:text-white transition-all duration-300"
