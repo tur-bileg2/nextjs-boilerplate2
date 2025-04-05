@@ -287,14 +287,19 @@ export default function Contact() {
               </div>
               
               {/* Location Map or Image */}
+              {/* Replace this block with an interactive iframe map */}
               <div className="relative h-64 w-full rounded-xl overflow-hidden shadow-lg mb-8">
-                <Image 
-                  src="/images/tokyo-map.jpg" 
-                  alt="Tokyo, Japan Map" 
-                  fill 
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-indigo-900/20 flex items-center justify-center">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.983056112718!2d139.6917063152595!3d35.68948798019117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b4e1b1f5d17%3A0x48a8c8d0f1a7a7d1!2sTokyo%2C%20Japan!5e0!3m2!1sen!2sus!4v1697051234567"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="pointer-events-auto"
+                ></iframe>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="bg-white p-3 rounded-lg shadow-lg">
                     <FiMapPin size={24} className="text-indigo-600" />
                   </div>
@@ -411,7 +416,7 @@ export default function Contact() {
                       <div className="relative">
                         <label 
                           htmlFor="name" 
-                          className={`absolute left-4 ${focusedField === 'name' || formData.name ? 'text-xs -top-2 bg-white px-1' : 'text-slate-500 top-3'} transition-all duration-200`}
+                          className={`absolute left-4 ${focusedField === 'name' || formData.name ? 'text-xs -top-2 bg-white px-1 z-10' : 'text-slate-500 top-3'} transition-all duration-200`}
                         >
                           {t('contact.yourName')}
                         </label>
@@ -431,7 +436,7 @@ export default function Contact() {
                       <div className="relative">
                         <label 
                           htmlFor="email" 
-                          className={`absolute left-4 ${focusedField === 'email' || formData.email ? 'text-xs -top-2 bg-white px-1' : 'text-slate-500 top-3'} transition-all duration-200`}
+                          className={`absolute left-4 ${focusedField === 'email' || formData.email ? 'text-xs -top-2 bg-white px-1 z-10' : 'text-slate-500 top-3'} transition-all duration-200`}
                         >
                           {t('contact.yourEmail')}
                         </label>
@@ -452,34 +457,40 @@ export default function Contact() {
                     <div className="relative">
                       <label 
                         htmlFor="subject" 
-                        className={`absolute left-4 ${focusedField === 'subject' || formData.subject ? 'text-xs -top-2 bg-white px-1' : 'text-slate-500 top-3'} transition-all duration-200`}
+                        className={`absolute left-4 ${focusedField === 'subject' || formData.subject ? 'text-xs -top-2.5 bg-white px-1 z-20' : 'text-slate-500 top-3'} transition-all duration-200`}
                       >
                         {t('contact.subject')}
                       </label>
-                      <select 
-                        id="subject" 
-                        name="subject" 
-                        value={formData.subject}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField('subject')}
-                        onBlur={() => setFocusedField(null)}
-                        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all duration-200 outline-none appearance-none bg-white pt-4"
-                      >
-                        {subjectOptions.map((option) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label[language as keyof typeof option.label]}
-                          </option>
-                        ))}
-                      </select>
-                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-slate-400">
-                        <FiChevronDown size={18} />
+                      <div className={`relative mt-${focusedField === 'subject' || formData.subject ? '0' : '0'}`}>
+                        <select 
+                          id="subject" 
+                          name="subject" 
+                          value={formData.subject}
+                          onChange={handleChange}
+                          onFocus={() => setFocusedField('subject')}
+                          onBlur={() => setFocusedField(null)}
+                          className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all duration-200 outline-none appearance-none bg-white pt-4 text-slate-800"
+                        >
+                          {subjectOptions.map((option) => (
+                            <option 
+                              key={option.value} 
+                              value={option.value}
+                              className="py-2 text-slate-800"
+                            >
+                              {option.label[language as keyof typeof option.label]}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-slate-400">
+                          <FiChevronDown size={18} />
+                        </div>
                       </div>
                     </div>
                     
                     <div className="relative">
                       <label 
                         htmlFor="message" 
-                        className={`absolute left-4 ${focusedField === 'message' || formData.message ? 'text-xs -top-2 bg-white px-1' : 'text-slate-500 top-3'} transition-all duration-200`}
+                        className={`absolute left-4 ${focusedField === 'message' || formData.message ? 'text-xs -top-2 bg-white px-1 z-10' : 'text-slate-500 top-3'} transition-all duration-200`}
                       >
                         {t('contact.messageContent')}
                       </label>
